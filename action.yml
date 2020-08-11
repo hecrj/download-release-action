@@ -8,6 +8,9 @@ inputs:
   release:
     description: 'The identifier of the release to download.'
     default: ${{ github.event.release.id }}
+  output:
+    description: 'The output directory where the assets will be downloaded.'
+    default: ${{ github.event.release.tag_name }}
   token:
     description: >
       The token used to authenticate the requests to the GitHub API.
