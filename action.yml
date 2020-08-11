@@ -1,0 +1,20 @@
+name: 'Download the assets of a GitHub release'
+description: 'Download all the assets of a GitHub release'
+author: 'Héctor Ramón'
+inputs:
+  repository:
+    description: 'Repository name with owner. For example, hecrj/iced'
+    default: ${{ github.repository }}
+  release:
+    description: 'The identifier of the release to download.'
+    default: ${{ github.event.release.id }}
+  token:
+    description: >
+      The token used to authenticate the requests to the GitHub API.
+    default: ${{ github.token }}
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'download'
+  color: 'blue'
