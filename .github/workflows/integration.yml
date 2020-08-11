@@ -9,11 +9,14 @@ jobs:
     steps:
     - uses: hecrj/download-release-action@master
       with:
-        release: 1
+        release: 29583267
     - name: Check release tag name folder exists
       run: |
         [ -d "integration-test-tag" ]
     - name: Check assets exist inside the release folder
       run: |
         [ -f "integration-test-tag/a.zip" ]
-        [ -f "integration-test-tag/b.zip" ]
+        [ -f "integration-test-tag/b.txt" ]
+    - name: Check assets have been correctly downloaded
+      run: |
+        cat integration-test-tag/b.txt | grep "Correct!"
