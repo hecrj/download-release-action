@@ -27,12 +27,12 @@ jobs:
 ## Inputs
 The following inputs can be provided with the `jobs.<job_id>.steps.with` yaml key.
 
-| Name       | Required | Description                                               | Default |
-|------------|:--------:|-----------------------------------------------------------|---------|
-| repository | ✖        | Repository name, with owner.                              | ${{ github.repository }}       |
-| release    | ✖        | The identifier of the release to download.                | ${{ github.event.release.id }} |
-| output     | ✖        | The output directory where the assets will be downloaded. | ${{ github.event.release.tag_name }} |
-| token      | ✖        | The token used to authenticate the requests to the GitHub API. | ${{ github.token }} |
+| Name       | Required | Description                                                    | Default |
+|------------|:--------:|----------------------------------------------------------------|---------|
+| repository | ✖        | Repository name, with owner.                                   | `github.repository`             |
+| release    | ✖        | The identifier of the release to download.                     | `github.event.release.id`       |
+| output     | ✖        | The output directory where the assets will be downloaded.      | `github.event.release.tag_name` |
+| token      | ✖        | The token used to authenticate the requests to the GitHub API. | `github.token`                  |
 
 For more details, check out [`action.yml`].
 
