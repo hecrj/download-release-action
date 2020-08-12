@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as stream from 'stream';
 import * as fs from 'fs';
 import * as core from '@actions/core';
@@ -21,7 +20,6 @@ async function run() {
     });
 
     const owner_repository = repository.split('/');
-
 
     const assets = await octokit.repos.listReleaseAssets({
       owner: owner_repository[0],
