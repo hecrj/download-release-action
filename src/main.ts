@@ -12,9 +12,9 @@ const pipeline = promisify(stream.pipeline);
 async function run() {
   try {
     const repository = core.getInput('repository');
-    const release = core.getInput('release');
-    const output = core.getInput('output');
+    const release_id = core.getInput('release');
     const token = core.getInput('token');
+    let output = core.getInput('output');
 
     const octokit = new Octokit({
       auth: token,
@@ -22,13 +22,22 @@ async function run() {
 
     const owner_repository = repository.split('/');
 
+
     const assets = await octokit.repos.listReleaseAssets({
       owner: owner_repository[0],
       repo: owner_repository[1],
-      release_id: +release,
+      release_id: +release_id,
     });
 
-    core.info(JSON.stringify(assets, null, 2));
+    if(output === '') {
+      const release = await octokit.repos.getRelease({
+        owner: owner_repository[0],
+        repo: owner_repository[1],
+        release_id: +release_id ,
+      });
+
+      output = release.data.tag_name;
+    }
 
     io.mkdirP(output);
 
